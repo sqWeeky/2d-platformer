@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5477545256634328451
 Transform:
   m_ObjectHideFlags: 0
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7984888594551920952}
   - component: {fileID: -8089624979022569304}
   - component: {fileID: -7049741009379306793}
-  - component: {fileID: -4041775479638312894}
+  - component: {fileID: 9151680044848570130}
   - component: {fileID: 961114345273989306}
   m_Layer: 0
   m_Name: Enemy_2
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da9bd26fffc9e2428b1366f9e871425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-4041775479638312894
+--- !u!114 &9151680044848570130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,15 +204,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4617112107331657051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f256ff81ebec3a40a63efa8eee199eb, type: 3}
+  m_Script: {fileID: 11500000, guid: aca732e5ba260634bb05986739a76a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentSpeed: 1.5
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _groundDetection: {fileID: 5477545256634328451}
-  _animator: {fileID: 961114345273989306}
+  _currentSpeed: 0
+  _moveSpots: []
 --- !u!95 &961114345273989306
 Animator:
   serializedVersion: 5

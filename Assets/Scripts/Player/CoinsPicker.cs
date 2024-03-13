@@ -4,7 +4,7 @@ public class CoinPicker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Coin")
+        if (TryGetComponent(out Player player))
             Destroy(other.gameObject);
     }
 }

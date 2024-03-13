@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private MovementSystemForEnemy _movementSystem;
+    private Patrol _patrol;
 
     private void Start()
     {
-        _movementSystem = GetComponent<MovementSystemForEnemy>();        
-    }
-
-    private void Update()
-    {
-        _movementSystem.ChangeState(MovementState.Patrol);
-        _movementSystem.Move();       
-    }
+        _patrol = GetComponent<Patrol>();
+        _patrol.Move();
+    }    
 }

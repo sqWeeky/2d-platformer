@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private MovementSystemForPlayer _movementSystem;
+    private MoverPlayer _movementSystem;
 
     private void Start()
     {
-        _movementSystem = GetComponent<MovementSystemForPlayer>();
+        _movementSystem = GetComponent<MoverPlayer>();
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.Space))
         {
             _movementSystem.ChangeState(MovementState.Jumping);
             _movementSystem.Move();
