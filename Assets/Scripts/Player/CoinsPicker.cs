@@ -4,7 +4,7 @@ public class CoinPicker : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Coin coin))
             Destroy(other.gameObject);
     }
 }

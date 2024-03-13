@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Patrol : MonoBehaviour, IMovable
@@ -7,34 +6,27 @@ public class Patrol : MonoBehaviour, IMovable
     [SerializeField] private Transform[] _moveSpots;
 
     private int _spot = 0;
-    private int _nextSpot;
     private float _minDistanse = 0.2f;
+    private Quaternion _directionRight = Quaternion.Euler(0, 0, 0);
+    private Quaternion _directionLeft = Quaternion.Euler(0, 180, 0);
 
     public void Move()
-       => StartCoroutine(StartMovement());
-
-    private IEnumerator StartMovement()
     {
-        Flip();
+        transform.position = Vector2.MoveTowards(transform.position, _moveSpots[_spot].position, _currentSpeed * Time.deltaTime);
 
-        while (Vector3.Distance(transform.position, _moveSpots[_spot].position) > _minDistanse)
+        if (Vector2.Distance(transform.position, _moveSpots[_spot].position) < _minDistanse)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _moveSpots[_spot].position, _currentSpeed * Time.deltaTime);
-            yield return null;
+            _spot = ++_spot % _moveSpots.Length;
+
+            Flip();
         }
-
-        _nextSpot = _spot + 1;
-        _spot = _nextSpot % _moveSpots.Length;
-
-        yield return null;
-        StartCoroutine(StartMovement());
     }
 
     private void Flip()
     {
-        if (_spot != _moveSpots.Length - 1)
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-        else
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        if (transform.position.x < _moveSpots[_spot].position.x)        
+            transform.localRotation = _directionRight;        
+        else        
+            transform.localRotation = _directionLeft;        
     }
 }

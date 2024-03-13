@@ -176,7 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca732e5ba260634bb05986739a76a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentSpeed: 0
+  _currentSpeed: 2
+  _startWaitTime: 2
   _moveSpots: []
 --- !u!95 &5789425448761638425
 Animator:
