@@ -5,9 +5,7 @@ public class Player : MonoBehaviour
     private MoverPlayer _movementSystem;
 
     private void Start()
-    {
-        _movementSystem = GetComponent<MoverPlayer>();
-    }
+       => _movementSystem = GetComponent<MoverPlayer>();
 
     private void Update()
     {
@@ -25,10 +23,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-
         _movementSystem.ChangeState(MovementState.Idle);
         _movementSystem.Move();
-
-
     }
 }
