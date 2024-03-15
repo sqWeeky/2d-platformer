@@ -1,12 +1,39 @@
 using UnityEngine;
 
+[RequireComponent(typeof(MoverEnemy))]
 public class Enemy : MonoBehaviour
 {
-    private Patrol _patrol;
+    [SerializeField] private DetectionArea _detectionArea;
+
+    private MoverEnemy _mover;
+
+    private void OnEnable()
+    {
+        _detectionArea.ObjectEntered += MoveFollow;
+        _detectionArea.ObjectExited += MovePatrol;
+    }
 
     private void Start()
-        => _patrol = GetComponent<Patrol>();
+    {
+        _mover = GetComponent<MoverEnemy>();
+
+        MovePatrol();
+    }
 
     private void Update()
-        => _patrol.Move();
+    {
+        _mover.Move();
+    }
+
+    private void OnDisable()
+    {
+        _detectionArea.ObjectEntered -= MoveFollow;
+        _detectionArea.ObjectExited -= MovePatrol;
+    }
+
+    private void MovePatrol()
+       => _mover.ChangeState(MovementState.Patrol);
+
+    private void MoveFollow()
+        => _mover.ChangeState(MovementState.Follow);
 }

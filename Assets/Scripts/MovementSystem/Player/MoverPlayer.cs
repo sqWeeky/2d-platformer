@@ -31,6 +31,7 @@ public class MoverPlayer : MonoBehaviour, IMovable
         switch (_currentState)
         {
             case MovementState.Idle:
+                Idle();
                 _animator.SetTrigger(_states[1]);
                 _animator.SetBool(_states[2], false);
                 _animator.ResetTrigger(_states[3]);
@@ -54,6 +55,9 @@ public class MoverPlayer : MonoBehaviour, IMovable
 
     public void ChangeState(MovementState state)
         => _currentState = state;
+
+    private void Idle()
+        => _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
 
     private void Run(float userInput)
     {
