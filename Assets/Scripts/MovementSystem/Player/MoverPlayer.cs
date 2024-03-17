@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Attack))]
 public class MoverPlayer : MonoBehaviour, IMovable
 {
     [SerializeField] private float _currentSpeed;

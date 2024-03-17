@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(MoverPlayer))]
 public class Player : MonoBehaviour
 {
     private MoverPlayer _mover;

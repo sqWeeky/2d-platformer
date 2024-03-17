@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthSystem : MonoBehaviour
+public class HealthChanger : MonoBehaviour
 {
     [SerializeField] private int _currentHealth;
     [SerializeField] private int _maxHealth;
@@ -14,7 +14,7 @@ public class HealthSystem : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void SetHealth(int extraHealth)
+    public void Heal(int extraHealth)
     {
         if (extraHealth > 0)
             _currentHealth += extraHealth;

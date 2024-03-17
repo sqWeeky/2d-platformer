@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(HealthSystem))]
+[RequireComponent(typeof(HealthChanger))]
 public class Picker : MonoBehaviour
 {
     private int _extraHealth;
-    private HealthSystem _healthSystem;
+    private HealthChanger _healthSystem;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,9 +13,9 @@ public class Picker : MonoBehaviour
 
         if (other.TryGetComponent(out MedicalKit medicalKit))
         {
-            _extraHealth = medicalKit.GetHealth();
-            _healthSystem = GetComponent<HealthSystem>();
-            _healthSystem.SetHealth(_extraHealth);
+            _extraHealth = medicalKit.ExtraHealth;
+            _healthSystem = GetComponent<HealthChanger>();
+            _healthSystem.Heal(_extraHealth);
             Destroy(other.gameObject);
         }
     }

@@ -10488,7 +10488,7 @@ PrefabInstance:
       objectReference: {fileID: 1991536971}
     - target: {fileID: 8278893276079460598, guid: 05cf1306a70789749be5cf16f4c7a921, type: 3}
       propertyPath: _currentSpeed
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8504068113018072294, guid: 05cf1306a70789749be5cf16f4c7a921, type: 3}
       propertyPath: _damage
@@ -16234,11 +16234,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1991536968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab19a971febdad4b96061c34bb6e80a, type: 3}
+  m_Script: {fileID: 11500000, guid: ea1fc9511dc7bfa43b175663e5289873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealth: 300
-  _maxHealth: 100
+  _maxHealth: 300
 --- !u!114 &1991536980
 MonoBehaviour:
   m_ObjectHideFlags: 0
