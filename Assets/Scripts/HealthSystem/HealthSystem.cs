@@ -3,11 +3,12 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private int _currentHealth;
-    [SerializeField] private int _maxHealth;    
+    [SerializeField] private int _maxHealth;
 
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
+        if (damage > 0)
+            _currentHealth -= damage;
 
         if (_currentHealth <= 0)
             Destroy(gameObject);
@@ -15,7 +16,8 @@ public class HealthSystem : MonoBehaviour
 
     public void SetHealth(int extraHealth)
     {
-        _currentHealth += extraHealth;
+        if (extraHealth > 0)
+            _currentHealth += extraHealth;
 
         if (_currentHealth >= _maxHealth)
             _currentHealth = _maxHealth;

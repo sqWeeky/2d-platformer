@@ -3,6 +3,8 @@ public enum MovementState
     Idle,
     Patrol,
     Run,
-    Jumping,
-    Follow
+    Jump,
+    Follow,
+    Attack,
+    Walk
 }

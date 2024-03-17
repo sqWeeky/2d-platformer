@@ -2,17 +2,10 @@ using UnityEngine;
 
 public class MedicalKit : MonoBehaviour
 {
-    [SerializeField] private int _extraHealth;
+    [SerializeField] private int _extraHealth = 20;
 
-    private HealthSystem _healthSystem;
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public int GetHealth()
     {
-        if (other.gameObject.GetComponent<Player>())
-        {
-            _healthSystem = other.gameObject.GetComponent<HealthSystem>();
-            _healthSystem.SetHealth(_extraHealth);
-            Destroy(gameObject);
-        }
+        return _extraHealth;
     }
 }

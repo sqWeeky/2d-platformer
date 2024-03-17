@@ -16,15 +16,21 @@ public class MoverPlayer : MonoBehaviour, IMovable
     private float _distanseRaycast = 1.0f;
     private Quaternion _directionRight = Quaternion.Euler(0, 0, 0);
     private Quaternion _directionLeft = Quaternion.Euler(0, 180, 0);
-    private Dictionary<int, string> _states = new()
-    {
-        [1] = "Idle",
-        [2] = "Run",
-        [3] = "Jump"
-    };
+    private Dictionary<MovementState, string> _states;
+    private Attack _attack;
 
     private void Start()
-        => _rigidbody = GetComponent<Rigidbody2D>();
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _attack = GetComponent<Attack>();
+        _states = new()
+        {
+            [MovementState.Idle] = "Idle",
+            [MovementState.Run] = "Run",
+            [MovementState.Jump] = "Jump",
+            [MovementState.Attack] = "Attack"
+        };
+    }
 
     public void Move(float userInput)
     {
@@ -32,23 +38,34 @@ public class MoverPlayer : MonoBehaviour, IMovable
         {
             case MovementState.Idle:
                 Idle();
-                _animator.SetTrigger(_states[1]);
-                _animator.SetBool(_states[2], false);
-                _animator.ResetTrigger(_states[3]);
+                _animator.SetTrigger(_states[MovementState.Idle]);
+                _animator.SetBool(_states[MovementState.Run], false);
+                _animator.ResetTrigger(_states[MovementState.Jump]);
+                _animator.ResetTrigger(_states[MovementState.Attack]);
                 break;
 
             case MovementState.Run:
                 Run(userInput);
-                _animator.ResetTrigger(_states[1]);
-                _animator.SetBool(_states[2], true);
-                _animator.ResetTrigger(_states[3]);
+                _animator.ResetTrigger(_states[MovementState.Idle]);
+                _animator.SetBool(_states[MovementState.Run], true);
+                _animator.ResetTrigger(_states[MovementState.Jump]);
+                _animator.ResetTrigger(_states[MovementState.Attack]);
                 break;
 
-            case MovementState.Jumping:
+            case MovementState.Jump:
                 Jumping();
-                _animator.ResetTrigger(_states[1]);
-                _animator.SetBool(_states[2], false);
-                _animator.SetTrigger(_states[3]);
+                _animator.ResetTrigger(_states[MovementState.Idle]);
+                _animator.SetBool(_states[MovementState.Run], false);
+                _animator.SetTrigger(_states[MovementState.Jump]);
+                _animator.ResetTrigger(_states[MovementState.Attack]);
+                break;
+
+            case MovementState.Attack:
+                _attack.StartAction();
+                _animator.ResetTrigger(_states[MovementState.Idle]);
+                _animator.SetBool(_states[MovementState.Run], false);
+                _animator.ResetTrigger(_states[MovementState.Jump]);
+                _animator.SetTrigger(_states[MovementState.Attack]);
                 break;
         }
     }

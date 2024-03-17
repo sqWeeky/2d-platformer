@@ -1,21 +1,25 @@
 using UnityEngine;
 
-[RequireComponent(typeof(MoverEnemy))]
+[RequireComponent(typeof(MoverEnemy), typeof(Attack))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private DetectionArea _detectionArea;
+    [SerializeField] private Weapon _weapon;
 
     private MoverEnemy _mover;
+    private Attack _attack;
 
     private void OnEnable()
     {
         _detectionArea.ObjectEntered += MoveFollow;
         _detectionArea.ObjectExited += MovePatrol;
+        _weapon.ObjectEntered += Attack;
     }
 
     private void Start()
     {
         _mover = GetComponent<MoverEnemy>();
+        _attack = GetComponent<Attack>();
 
         MovePatrol();
     }
@@ -29,6 +33,7 @@ public class Enemy : MonoBehaviour
     {
         _detectionArea.ObjectEntered -= MoveFollow;
         _detectionArea.ObjectExited -= MovePatrol;
+        _weapon.ObjectEntered -= Attack;
     }
 
     private void MovePatrol()
@@ -36,4 +41,10 @@ public class Enemy : MonoBehaviour
 
     private void MoveFollow()
         => _mover.ChangeState(MovementState.Follow);
+
+    private void Attack()
+    {       
+        _mover.ChangeState(MovementState.Attack);
+        _attack.StartAction();
+    }
 }
