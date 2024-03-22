@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Attack))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Attack), typeof(ThrowKnife))]
 public class MoverPlayer : MonoBehaviour, IMovable
 {
     [SerializeField] private float _currentSpeed;
@@ -18,17 +18,20 @@ public class MoverPlayer : MonoBehaviour, IMovable
     private Quaternion _directionLeft = Quaternion.Euler(0, 180, 0);
     private Dictionary<MovementState, string> _states;
     private Attack _attack;
+    private ThrowKnife _throwKnife;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _attack = GetComponent<Attack>();
+        _throwKnife = GetComponent<ThrowKnife>();
         _states = new()
         {
             [MovementState.Idle] = "Idle",
             [MovementState.Run] = "Run",
             [MovementState.Jump] = "Jump",
-            [MovementState.Attack] = "Attack"
+            [MovementState.Attack] = "Attack",
+            [MovementState.ThrowKnife] = "ThrowKnife",
         };
     }
 
@@ -66,6 +69,14 @@ public class MoverPlayer : MonoBehaviour, IMovable
                 _animator.SetBool(_states[MovementState.Run], false);
                 _animator.ResetTrigger(_states[MovementState.Jump]);
                 _animator.SetTrigger(_states[MovementState.Attack]);
+                break;
+
+            case MovementState.ThrowKnife:
+                _throwKnife.Activation();
+                _animator.ResetTrigger(_states[MovementState.Idle]);
+                _animator.SetBool(_states[MovementState.Run], false);
+                _animator.ResetTrigger(_states[MovementState.Jump]);
+                _animator.ResetTrigger(_states[MovementState.Attack]);
                 break;
         }
     }
