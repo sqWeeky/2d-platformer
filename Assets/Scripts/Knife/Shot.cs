@@ -11,11 +11,6 @@ public class Shot : MonoBehaviour
     private float _timer = 3f;
     private bool _canShot = true;
 
-    private void Start()
-    {
-        //_iconTimer = GetComponent<Timer>();
-    }
-
     public void Activation()
     {
         if (_canShot)
