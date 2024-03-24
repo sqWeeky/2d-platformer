@@ -661,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 50
   _maxHealth: 50
+  _transition: {fileID: 0}
 --- !u!114 &8278893276079460598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,7 +706,7 @@ MonoBehaviour:
   _attackRange: 0.4
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
 --- !u!1 &5985694002122959533
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject _settingPanale;
+    [SerializeField] private GameObject _levelPanale;
     [SerializeField] private GameObject _menu;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name == "Game")
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Menu");
         }
@@ -18,7 +17,8 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        _menu.SetActive(false);
+        _levelPanale.SetActive(true);
     }
 
     public void ExitGame()

@@ -13,8 +13,8 @@ public class Attack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.gameObject.TryGetComponent(out Health healthSystem))
-                healthSystem.TakeDamage(_damage);
+            if (enemy.gameObject.TryGetComponent(out Health health))
+                health.TakeDamage(_damage);
         }
     }
 

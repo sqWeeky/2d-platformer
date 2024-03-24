@@ -7,5 +7,5 @@ public enum MovementState
     Follow,
     Attack,
     Walk,
-    ThrowKnife    
+    ShotKnife
 }

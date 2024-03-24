@@ -6,18 +6,16 @@ public class Knife : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private int _damage;
 
-    private float _timeDeath = 15f;
-    private Rigidbody2D _rigidbody;
+    private float _timeDeath = 10f;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
         StartCoroutine(Death());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        _rigidbody.velocity = new Vector2(_speed, _rigidbody.velocity.y);
+        transform.Translate(Vector2.right * _speed * Time.deltaTime);
     }
 
     private IEnumerator Death()
@@ -36,8 +34,7 @@ public class Knife : MonoBehaviour
 
         if (other.gameObject.layer == 6)
         {
-            _rigidbody.velocity = new Vector2(0, 0);
-            _speed = 0;
+            Destroy(gameObject);
         }
     }
 }

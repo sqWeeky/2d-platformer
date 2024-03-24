@@ -3,18 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(MoverPlayer))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private LifeSteal _lifeSteal;
+
     private MoverPlayer _mover;
     private string _axisHorizontal = "Horizontal";
     private float _userInput;
-    private int _numberKnives;
-    private int _maxKnives = 5;
-    private Take _take;
 
     private void Start()
     {
-        _numberKnives = _maxKnives;
         _mover = GetComponent<MoverPlayer>();
-        _take = GetComponent<Take>();
     }
 
     private void FixedUpdate()
@@ -50,23 +47,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (_numberKnives != 0)
-            {
-                _numberKnives--;
-                _mover.ChangeState(MovementState.ThrowKnife);
-                _mover.Move(_userInput);
-                return;
-            }
+            _mover.ChangeState(MovementState.ShotKnife);
+            _mover.Move(_userInput);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            if (_take.IsTake == true)
-            {
-                Debug.Log(_numberKnives);
-                _numberKnives++;
-                Debug.Log(_numberKnives);
-            }
+            _lifeSteal.Activation();
+            return;
         }
     }
 }

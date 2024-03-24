@@ -12,12 +12,11 @@ public class Patrol : MonoBehaviour, IMovable
     {
         transform.position = Vector2.MoveTowards(transform.position, _moveSpots[_spot].position, _currentSpeed * Time.deltaTime);
 
-        if (Vector2.Distance(transform.position, _moveSpots[_spot].position) < _minDistanse)        
-            _spot = ++_spot % _moveSpots.Length; 
+        if (Vector2.Distance(transform.position, _moveSpots[_spot].position) < _minDistanse)
+            _spot = ++_spot % _moveSpots.Length;
     }
 
     public Transform GetSpot()
-    {
-        return _moveSpots[_spot];
-    }
+         => _moveSpots[_spot];
+
 }

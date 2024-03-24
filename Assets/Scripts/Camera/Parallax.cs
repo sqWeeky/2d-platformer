@@ -9,6 +9,7 @@ public class Parallax : MonoBehaviour
 
     private void Start()
     {
+        _camera = FindAnyObjectByType<Camera>();
         _startPositionX = transform.position.x;
     }
 
