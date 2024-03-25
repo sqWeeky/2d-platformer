@@ -9,6 +9,7 @@ public class MoverPlayer : MonoBehaviour, IMovable
     [SerializeField] private float _jumpHeight;
     [SerializeField] private Animator _animator;
 
+
     private Rigidbody2D _rigidbody;
     private bool _isGrounded;
     private MovementState _currentState = MovementState.Idle;

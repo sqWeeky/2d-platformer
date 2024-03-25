@@ -5,6 +5,8 @@ public class LifeSteal : MonoBehaviour
     [SerializeField] private Health _healthPlayer;
     [SerializeField] private Animator _animator;
     [SerializeField] private Timer _iconTimer;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _clip;
 
     private float _damage = 0.2f;
     private float _lifeSteal;
@@ -44,5 +46,6 @@ public class LifeSteal : MonoBehaviour
     {
         _iconTimer.Activation(_timer);
         this.gameObject.SetActive(true);
+        _audioSource.PlayOneShot(_clip);
     }
 }

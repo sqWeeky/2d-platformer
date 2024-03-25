@@ -4,6 +4,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LifeSteal _lifeSteal;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _clipAttack;
 
     private MoverPlayer _mover;
     private string _axisHorizontal = "Horizontal";
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
         {
             _mover.ChangeState(MovementState.Attack);
             _mover.Move(_userInput);
+            _audioSource.PlayOneShot(_clipAttack);
             return;
         }
 
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour
         {
             _mover.ChangeState(MovementState.ShotKnife);
             _mover.Move(_userInput);
+            _audioSource.PlayOneShot(_clipAttack);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
